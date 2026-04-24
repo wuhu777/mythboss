@@ -1,64 +1,64 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+本文件为 Claude Code（claude.ai/code）在本仓库中工作时提供指引。
 
-## Project overview
+## 项目概览
 
-This repository is a Godot 4.6 2D action game prototype named `MythBoss`.
+本仓库是一个名为 `MythBoss` 的 Godot 4.6 2D 动作游戏原型。
 
-The codebase is still in bootstrap state. Right now it contains a minimal Godot project manifest, a single root scene, and placeholder assets only. Prefer small, runnable changes that keep the project opening cleanly in the editor.
+代码库目前仍处于引导搭建阶段。现在只包含一个最小化的 Godot 项目清单、一个根场景，以及占位资源。优先进行小而可运行的改动，确保项目始终可以在编辑器中正常打开。
 
-## Common commands
+## 常用命令
 
-### Open the project in Godot
-Open `project.godot` in the Godot editor.
+### 在 Godot 中打开项目
+在 Godot 编辑器中打开 `project.godot`。
 
-Current local executable used during setup:
+当前搭建阶段本地使用的可执行文件：
 
 ```bash
 "D:/environment/Godot_v4.6.2-stable_win64.exe"
 ```
 
-### Run the project from the command line
+### 从命令行运行项目
 
 ```bash
 "D:/environment/Godot_v4.6.2-stable_win64.exe" --path "D:/workspace/ai/mythboss"
 ```
 
-This launches the configured startup scene from `project.godot`.
+这会从 `project.godot` 中配置的启动场景启动项目。
 
-### Validate the current playable entry point
-There is no separate build pipeline yet; the main validation step is confirming the project opens and runs.
+### 验证当前可运行入口
+目前还没有单独的构建流水线；主要验证方式是确认项目可以打开并运行。
 
-- In the editor: use **Run Project**.
-- From the CLI: run the command above.
+- 在编辑器中：使用 **Run Project**。
+- 从 CLI：运行上面的命令。
 
-### Tests and linting
-There is currently no test framework, no single-test command, and no lint setup checked into the repository.
+### 测试与 lint
+当前仓库中还没有接入测试框架、单测命令或 lint 配置。
 
-Before documenting test or lint commands here, verify that a framework has actually been added.
+在这里记录测试或 lint 命令之前，先确认相关框架已经实际加入项目。
 
-## Architecture
+## 架构
 
-### Runtime entry point
-- `project.godot` is the authoritative project manifest.
-- `run/main_scene` is set to `res://scenes/main.tscn`.
-- The project currently targets Godot 4.6 and uses the `gl_compatibility` renderer for both desktop and mobile settings.
+### 运行时入口
+- `project.godot` 是权威的项目清单文件。
+- `run/main_scene` 设置为 `res://scenes/main.tscn`。
+- 项目当前目标为 Godot 4.6，并在桌面端和移动端都使用 `gl_compatibility` 渲染器。
 
-### Current scene graph
-- `scenes/main.tscn` is the only gameplay scene currently wired into the project.
-- The root node is a plain `Node2D` named `Main`.
-- There are no attached scripts, autoloads, addons, or secondary scenes in the repository yet.
+### 当前场景结构
+- `scenes/main.tscn` 是当前唯一接入运行流程的游戏场景。
+- 根节点是一个名为 `Main` 的普通 `Node2D`。
+- 仓库中目前还没有挂载脚本、autoload、addon 或其他次级场景。
 
-### Repository shape
-- `scenes/` is the only game-content directory currently in use.
-- `scripts/` and `assets/` are intended future locations for gameplay logic and content, but they are not present yet.
-- `icon.svg` is the project icon referenced by `project.godot`.
+### 仓库结构
+- `scenes/` 是当前唯一正在使用的游戏内容目录。
+- `scripts/` 和 `assets/` 是未来预期放置玩法逻辑与资源内容的位置，但目前尚不存在。
+- `icon.svg` 是 `project.godot` 引用的项目图标。
 
-## Working conventions for this repo
+## 本仓库的工作约定
 
-- Default to GDScript unless the user explicitly chooses C#.
-- Keep the project editor-runnable at all times; avoid partial scene or script wiring that breaks startup.
-- Build the prototype as small vertical slices that stay reachable from `main.tscn`.
-- Given the current bootstrap state, favor establishing the core player loop first: player control, combat interaction, enemy/boss behavior, then camera/UI.
-- Update this file when the project gains real scripts, autoloads, test tooling, export configuration, or more than one meaningful runtime scene.
+- 默认使用 GDScript，除非用户明确指定 C#。
+- 始终保持项目在编辑器中可运行；避免做出会破坏启动流程的半成品场景或脚本接线。
+- 以小型纵向切片的方式构建原型，并确保它们始终能从 `main.tscn` 进入。
+- 基于当前的引导阶段，优先建立核心玩家循环：玩家控制、战斗交互、敌人/Boss 行为，然后再做镜头/UI。
+- 当项目新增真实脚本、autoload、测试工具、导出配置，或出现多个有实际意义的运行时场景时，更新此文件。
