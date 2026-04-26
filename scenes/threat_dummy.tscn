@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/threat_dummy.gd" id="1_threat_dummy_script"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_attack"]
+radius = 76.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hurtbox"]
+radius = 28.0
+
+[node name="ThreatDummy" type="Node2D"]
+script = ExtResource("1_threat_dummy_script")
+
+[node name="Body" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, -30, 24, -10, 24, 18, 0, 30, -24, 18, -24, -10)
+color = Color(0.631373, 0.270588, 0.25098, 1)
+
+[node name="Telegraph" type="Polygon2D" parent="."]
+color = Color(0.988235, 0.733333, 0.305882, 0.55)
+
+[node name="AttackArea" type="Area2D" parent="."]
+monitoring = true
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_attack")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+monitoring = true
+monitorable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_hurtbox")

@@ -1,0 +1,14 @@
+63f7b34db8d8cdea90c76aacccf841ec
+::res://::1777035083
+CLAUDE.md::TextFile::-1::1777032440::0::1::::<><><>0<>0<><>::
+icon.svg::CompressedTexture2D::214923316423683512::1777016452::1777035085::1::::<><><>0<>0<>28a3c2903f2e5632798a65cff21bacc7<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+README.md::TextFile::-1::1777020908::0::1::::<><><>0<>0<><>::
+::res://assets/::1777016452
+::res://docs/::1777034956
+player-manual.md::TextFile::-1::1777034956::0::1::::<><><>0<>0<><>::
+::res://scenes/::1777034482
+main.tscn::PackedScene::-1::1777034482::0::1::::<><><>0<>0<><>::res://scripts/player.gd<>res://scenes/threat_dummy.tscn
+threat_dummy.tscn::PackedScene::-1::1777034100::0::1::::<><><>0<>0<><>::res://scripts/threat_dummy.gd
+::res://scripts/::1777034520
+player.gd::GDScript::8464443321669518897::1777034520::0::1::::<>CharacterBody2D<><>0<>0<><>::
+threat_dummy.gd::GDScript::3067164801685405582::1777034360::0::1::::<>Node2D<><>0<>0<><>::

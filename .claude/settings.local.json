@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:docs.claude.com)",
+      "Read(//dev/**)",
+      "Bash(git restore *)",
+      "Bash(git *)",
+      "Bash(D:/environment/Godot_v4.6.2-stable_win64.exe *)",
+      "Bash(D:/environment/Godot_v4.6.2-stable_win64.exe/Godot_v4.6.2-stable_win64_console.exe *)",
+      "Bash(D:/environment/Godot_v4.6.2-stable_win64.exe/Godot_v4.6.2-stable_win64.exe *)",
+      "Read(//d/software/everything-claude-code/everything-claude-code/rules/**)",
+      "Bash(cp -r \"D:/software/everything-claude-code/everything-claude-code/rules/.\" ~/.claude/rules/)",
+      "mcp__plugin_everything-claude-code_context7__resolve-library-id",
+      "mcp__plugin_everything-claude-code_context7__query-docs",
+      "Bash(gh search *)",
+      "mcp__ide__getDiagnostics",
+      "Bash(/d/environment/Godot_v4.6.2-stable_win64.exe/Godot_v4.6.2-stable_win64_console.exe *)",
+      "mcp__plugin_everything-claude-code_github__search_code",
+      "mcp__plugin_everything-claude-code_exa__web_search_exa"
+    ]
+  },
+  "enabledPlugins": {
+    "everything-claude-code@everything-claude-code": true
+  }
+}

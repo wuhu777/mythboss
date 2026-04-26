@@ -1,0 +1,94 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_door.gd" id="1_level_door_script"]
+[ext_resource type="PackedScene" path="res://scenes/growth_pickup.tscn" id="2_growth_pickup_scene"]
+[ext_resource type="PackedScene" path="res://scenes/threat_dummy.tscn" id="3_threat_dummy_scene"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_top"]
+size = Vector2(760, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_side"]
+size = Vector2(36, 420)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_bottom"]
+size = Vector2(760, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
+size = Vector2(84, 44)
+
+[node name="SidePathLevel" type="Node2D"]
+
+[node name="Floor" type="Polygon2D" parent="."]
+position = Vector2(576, 324)
+polygon = PackedVector2Array(-370, -200, 370, -200, 370, 200, -370, 200)
+color = Color(0.137255, 0.211765, 0.196078, 1)
+
+[node name="Road" type="Polygon2D" parent="."]
+position = Vector2(576, 324)
+polygon = PackedVector2Array(-300, -52, 300, -52, 300, 52, -300, 52)
+color = Color(0.372549, 0.415686, 0.337255, 1)
+
+[node name="Landmark" type="Polygon2D" parent="."]
+position = Vector2(744, 324)
+polygon = PackedVector2Array(0, -22, 20, 0, 0, 22, -20, 0)
+color = Color(0.792157, 0.682353, 0.380392, 1)
+
+[node name="BoundaryTop" type="StaticBody2D" parent="."]
+position = Vector2(576, 124)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryTop"]
+shape = SubResource("RectangleShape2D_wall_top")
+
+[node name="BoundaryRight" type="StaticBody2D" parent="."]
+position = Vector2(946, 324)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryRight"]
+shape = SubResource("RectangleShape2D_wall_side")
+
+[node name="BoundaryBottom" type="StaticBody2D" parent="."]
+position = Vector2(576, 524)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryBottom"]
+shape = SubResource("RectangleShape2D_wall_bottom")
+
+[node name="BoundaryLeft" type="StaticBody2D" parent="."]
+position = Vector2(206, 324)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundaryLeft"]
+shape = SubResource("RectangleShape2D_wall_side")
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="from_arena" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(332, 324)
+
+[node name="return_entry" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(272, 324)
+
+[node name="ReturnPath" type="Polygon2D" parent="."]
+position = Vector2(242, 324)
+polygon = PackedVector2Array(-54, -58, 54, -58, 54, 58, -54, 58)
+color = Color(0.278431, 0.384314, 0.521569, 1)
+
+[node name="ReturnDoor" type="Area2D" parent="."]
+position = Vector2(242, 324)
+script = ExtResource("1_level_door_script")
+target_scene_path = "res://scenes/levels/arena_level.tscn"
+target_spawn_id = &"from_side_path"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReturnDoor"]
+shape = SubResource("RectangleShape2D_door")
+
+[node name="MutationBlade" parent="." instance=ExtResource("2_growth_pickup_scene")]
+position = Vector2(496, 324)
+mutation_id = &"blade_limb"
+
+[node name="MutationFan" parent="." instance=ExtResource("2_growth_pickup_scene")]
+position = Vector2(644, 324)
+mutation_id = &"fan_arm"
+
+[node name="TestDummy" parent="." instance=ExtResource("3_threat_dummy_scene")]
+position = Vector2(776, 324)
+max_health = 5
+warning_duration = 0.55
+recover_duration = 0.6

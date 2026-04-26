@@ -1,19 +1,80 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_player_script"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="2_main_script"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_player"]
 radius = 18.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_attack"]
+size = Vector2(44, 28)
+
 [node name="Main" type="Node2D"]
+script = ExtResource("2_main_script")
+
+[node name="LevelRoot" type="Node2D" parent="."]
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(576, 324)
+position = Vector2(576, 470)
 script = ExtResource("1_player_script")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("CircleShape2D_player")
 
-[node name="Polygon2D" type="Polygon2D" parent="Player"]
-polygon = PackedVector2Array(0, -20, 16, 12, 0, 20, -16, 12)
-color = Color(0.94902, 0.619608, 0.0862745, 1)
+[node name="Visual" type="Node2D" parent="Player"]
+
+[node name="Head" type="Line2D" parent="Player/Visual"]
+width = 5.0
+default_color = Color(0.94902, 0.619608, 0.0862745, 1)
+closed = true
+points = PackedVector2Array(0, -24, 6, -23, 10, -18, 10, -12, 6, -7, 0, -6, -6, -7, -10, -12, -10, -18, -6, -23, 0, -24)
+
+[node name="Body" type="Line2D" parent="Player/Visual"]
+width = 5.0
+default_color = Color(0.94902, 0.619608, 0.0862745, 1)
+points = PackedVector2Array(0, -6, 0, 10)
+
+[node name="Arms" type="Line2D" parent="Player/Visual"]
+width = 5.0
+default_color = Color(0.94902, 0.619608, 0.0862745, 1)
+points = PackedVector2Array(-10, 0, 0, 4, 10, 0)
+
+[node name="LegLeft" type="Line2D" parent="Player/Visual"]
+width = 5.0
+default_color = Color(0.94902, 0.619608, 0.0862745, 1)
+points = PackedVector2Array(0, 10, -9, 22)
+
+[node name="LegRight" type="Line2D" parent="Player/Visual"]
+width = 5.0
+default_color = Color(0.94902, 0.619608, 0.0862745, 1)
+points = PackedVector2Array(0, 10, 9, 22)
+
+[node name="BladeLimb" type="Line2D" parent="Player/Visual"]
+visible = false
+width = 5.0
+default_color = Color(0.94902, 0.619608, 0.0862745, 1)
+points = PackedVector2Array(10, -2, 18, -14, 24, -28)
+
+[node name="FanArm" type="Line2D" parent="Player/Visual"]
+visible = false
+width = 5.0
+default_color = Color(0.94902, 0.619608, 0.0862745, 1)
+points = PackedVector2Array(-16, 4, -22, -6, -4, -12, 14, -6, 20, 4)
+
+[node name="AttackPivot" type="Node2D" parent="Player"]
+position = Vector2(0, -6)
+
+[node name="AttackArea" type="Area2D" parent="Player/AttackPivot"]
+position = Vector2(0, -32)
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/AttackPivot/AttackArea"]
+shape = SubResource("RectangleShape2D_attack")
+
+[node name="AttackVisual" type="Line2D" parent="Player/AttackPivot"]
+visible = false
+position = Vector2(0, -22)
+width = 5.0
+default_color = Color(0.972549, 0.862745, 0.509804, 0.9)
+points = PackedVector2Array(-14, 8, 0, -10, 14, 8)

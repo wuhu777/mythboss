@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/growth_pickup.gd" id="1_growth_pickup_script"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pickup"]
+radius = 28.0
+
+[node name="GrowthPickup" type="Area2D"]
+script = ExtResource("1_growth_pickup_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pickup")
+
+[node name="Ring" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, -30, 22, -20, 30, 0, 22, 20, 0, 30, -22, 20, -30, 0, -22, -20)
+color = Color(0.807843, 0.596078, 0.309804, 1)
+
+[node name="Core" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, -18, 13, -8, 16, 8, 0, 18, -13, 8, -16, -8)
+color = Color(0.807843, 0.596078, 0.309804, 0.35)
+
+[node name="BladeMark" type="Line2D" parent="."]
+width = 4.0
+default_color = Color(0.996078, 0.937255, 0.780392, 1)
+points = PackedVector2Array(-8, 14, 0, -16, 8, 14)
+
+[node name="FanMark" type="Line2D" parent="."]
+visible = false
+width = 4.0
+default_color = Color(0.905882, 0.972549, 1, 1)
+points = PackedVector2Array(-16, 10, -6, -10, 0, -14, 6, -10, 16, 10)
